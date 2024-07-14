@@ -26,6 +26,8 @@ $routes->group('dashboard',['filter' => 'login'], static function ($routes) {
     $routes->get('petugas/delete/(:any)', [PetugasController::class,'destroy']);    
     // Rekam Medis 
     $routes->get('rekam-medis',[RekamMedisController::class,'index']);
+    $routes->get('rekam-medis/create',[RekamMedisController::class,'create']);
+    $routes->post('rekam-medis/store',[RekamMedisController::class,'store']);
       // Rekam Medis - import
     $routes->get('rekam-medis/import',[ImportController::class,'index']);
     // log activity 
