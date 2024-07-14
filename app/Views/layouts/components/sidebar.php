@@ -4,7 +4,7 @@
       <ul class="space-y-2 font-medium">
             <h5 class="text-gray-500 font-bold uppercase dark:text-gray-400 px-3">MENU</h5>
             <li>
-                <a href="#" class="flex items-center p-3 text-gray-900 dark:text-white hover:bg-green-900 dark:hover:bg-gray-700 group">
+                <a href="<?= base_url('/') ?>" class="flex items-center p-3 text-gray-900 dark:text-white hover:bg-green-900 dark:hover:bg-gray-700 group">
                 <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-green-900 group-hover:text-white dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5Zm16 14a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2ZM4 13a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6Zm16-2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6Z"/>
                 </svg>
@@ -25,7 +25,7 @@
                 </button>
                 <ul id="data-master" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="#" class="flex items-center w-full p-2 text-gray-500  transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
+                        <a href="<?=base_url('dashboard/petugas')?>" class="flex items-center w-full p-2 text-gray-500  transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
                             <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/>
                             </svg>
@@ -35,7 +35,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
+                        <a href="<?=base_url('dashboard/rekam-medis')?>" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
                             <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/>
                             </svg>
@@ -139,7 +139,7 @@
             </li>
             <hr>
             <li>
-                <a href="#" class="flex items-center p-3 text-gray-900 dark:text-white hover:border-2 hover:bg-green-900 dark:hover:bg-gray-700 group">
+                <a href="<?=base_url('dashboard/log-activity')?>" class="flex items-center p-3 text-gray-900 dark:text-white hover:border-2 hover:bg-green-900 dark:hover:bg-gray-700 group">
                     <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9V4a1 1 0 0 0-1-1H8.914a1 1 0 0 0-.707.293L4.293 7.207A1 1 0 0 0 4 7.914V20a1 1 0 0 0 1 1h6M9 3v4a1 1 0 0 1-1 1H4m11 13a11.426 11.426 0 0 1-3.637-3.99A11.139 11.139 0 0 1 10 11.833L15 10l5 1.833a11.137 11.137 0 0 1-1.363 5.176A11.425 11.425 0 0 1 15.001 21Z"/>
                     </svg>

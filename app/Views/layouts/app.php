@@ -39,4 +39,104 @@ use CodeIgniter\Database\BaseUtils;
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- select 2 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+    // update status
+    $(document).ready(function() {
+        $('.update-modal').click(function() {
+            var id = $(this).data('user');
+            $('#id').val(id);
+        })
+    })
+    function deleteConfirm(event) {
+		console.log(event);
+		Swal.fire({
+			title: 'Konfirmasi hapus data!',
+			text: 'Apakah anda yakin ingin menghapus data ini?',
+			icon: 'warning',
+			showCancelButton: true,
+			cancelButtonText: 'Batal',
+			confirmButtonText: 'Hapus',
+			confirmButtonColor: 'red'
+		}).then(dialog => {
+			if (dialog.isConfirmed) {
+				window.location.assign(event);
+			}
+		});
+	}
+    // Datatable
+    $('#datatable').DataTable({
+        responsive: true,
+        ordering: false,
+        "oLanguage": {
+            "sEmptyTable": "Maaf data belum tersedia."
+        },
+        "columnDefs": [{
+            // "defaultContent": "",
+            // "targets": "_all"
+        }]
+    });
+    const passwordToggle = document.querySelector('.js-password-toggle')
+
+    passwordToggle.addEventListener('change', function() {
+    const password = document.querySelector('.js-password'),
+        passwordLabel = document.querySelector('.js-password-label')
+
+    if (password.type === 'password') {
+        password.type = 'text'
+        passwordLabel.innerHTML = 'hide'
+    } else {
+        password.type = 'password'
+        passwordLabel.innerHTML = 'show'
+    }
+
+    password.focus()
+    })
+</script>
+<?php
+$session = \Config\Services::session();
+$status_error = $session->get('status_error');
+$status_success = $session->get('status_success');
+?>
+<?php if ($status_success) : ?>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var Toast = Swal.mixin({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 3000,
+				timerProgressBar: true,
+				didOpen: (toast) => {
+					toast.addEventListener('mouseenter', Swal.stopTimer)
+					toast.addEventListener('mouseleave', Swal.resumeTimer)
+				}
+			})
+
+			Toast.fire({
+				icon: 'success',
+				title: <?= json_encode($session->getFlashdata('message')) ?>
+			})
+		});
+	</script>
+<?php endif; ?>
+<?php if ($status_error) : ?>
+	<script>
+		var Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+		})
+
+		Toast.fire({
+			icon: 'error',
+			title: '<?= $session->getFlashdata('error') ?>'
+		})
+	</script>
+<?php endif ?>
 </html>
