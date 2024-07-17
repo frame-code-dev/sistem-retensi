@@ -3,6 +3,7 @@
 namespace App\Controllers\Backoffice;
 
 use App\Controllers\BaseController;
+use App\Models\LogActivityModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Models\GroupModel;
@@ -71,6 +72,14 @@ class PetugasController extends BaseController
             }else{
                 $this->groupModel->addUserToGroup($userId, 2);
             }
+            $data = [
+                'user_id' => user()->id,
+                'action' => 'Menambahkan data petugas dengan username : '.$username,
+                'ip_address' => $this->request->getUserAgent(),
+                'created_at' => date("Y-m-d H:i:s"),
+            ];
+            $log = new LogActivityModel();
+            $log->insertLog($data);
 			session()->setFlashdata("status_success", true);
 			session()->setFlashdata('message', 'Data user berhasil ditambahkan.');
 			return redirect()->to('dashboard/petugas');
@@ -144,6 +153,14 @@ class PetugasController extends BaseController
                     $this->groupModel->addUserToGroup($userId, 2);
                 }
             }
+            $data = [
+                'user_id' => user()->id,
+                'action' => 'Mengganti data petugas',
+                'ip_address' => $this->request->getUserAgent(),
+                'created_at' => date("Y-m-d H:i:s"),
+            ];
+            $log = new LogActivityModel();
+            $log->insertLog($data);
 			session()->setFlashdata("status_success", true);
 			session()->setFlashdata('message', 'Data user berhasil diganti.');
 			return redirect()->to('dashboard/petugas');
@@ -160,6 +177,14 @@ class PetugasController extends BaseController
 
     public function destroy($id) {
         $this->userModel->deleteUser($id);
+        $data = [
+            'user_id' => user()->id,
+            'action' => 'Menghapus data petugas',
+            'ip_address' => $this->request->getUserAgent(),
+            'created_at' => date("Y-m-d H:i:s"),
+        ];
+        $log = new LogActivityModel();
+        $log->insertLog($data);
         session()->setFlashdata("status_success", true);
         session()->setFlashdata('message', 'Data user berhasil dihapus.');
         return redirect()->to('dashboard/petugas');
@@ -178,6 +203,14 @@ class PetugasController extends BaseController
             ];
         }
         $this->userModel->updateUser($id,$data);
+        $data = [
+            'user_id' => user()->id,
+            'action' => 'Update Status data petugas',
+            'ip_address' => $this->request->getUserAgent(),
+            'created_at' => date("Y-m-d H:i:s"),
+        ];
+        $log = new LogActivityModel();
+        $log->insertLog($data);
         session()->setFlashdata("status_success", true);
         session()->setFlashdata('message', 'Data status user berhasil diganti.');
         return redirect()->to('dashboard/petugas');

@@ -92,6 +92,8 @@ use CodeIgniter\Database\BaseUtils;
     password.focus()
     })
 </script>
+<?= $this->renderSection('js') ?>
+
 <?php
 $session = \Config\Services::session();
 $status_error = $session->get('status_error');

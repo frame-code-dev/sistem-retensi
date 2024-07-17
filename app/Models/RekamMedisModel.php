@@ -12,7 +12,9 @@ class RekamMedisModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['no_rm','nama_pasien','tempat_lahir',
+    'tanggal_lahir','nik_pasien','jenis_kelamin','alamat_lengkap','diagnosa','dpjp',
+    'status','tanggal_kunjungan_terakhir','created_at','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -43,6 +45,8 @@ class RekamMedisModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
 
     public function getAllRekamMedis() {
         return $this->findAll();

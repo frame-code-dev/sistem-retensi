@@ -43,11 +43,11 @@
             </div>
         </div>
         <div class="card bg-white p-5 mt-4 border rounded-md w-full relative">
-            <form action="<?= base_url('dashboard/rekam-medis/store') ?>" method="POST" class="w-full mx-auto space-y-4" enctype="multipart/form-data">
+            <form action="<?= base_url('dashboard/rekam-medis/edit/update/'.$data['id']) ?>" method="POST" class="w-full mx-auto space-y-4" enctype="multipart/form-data">
                 <div class="grid grid-cols-2 gap-3 ">
                     <div class="">
 						<label for="" class="block mb-2 text-sm font-semibold text-gray-900">NO. RM<span class="me-2 text-red-500">*</span></label>
-						<input type="text" placeholder="Masukkan No. Rekam Medis" name="no_rm"  value="<?= set_value("no_rm") ?>" id="no_rm" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+						<input type="text" placeholder="Masukkan No. Rekam Medis" name="no_rm" readonly  value="<?= set_value("no_rm",$data['no_rm']) ?>" id="no_rm" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 						<div id="error_no_rm" class="text-red-500 mt-2 text-xs"></div>
 						<div class="text-red-500 text-xs italic font-semibold">
 							<?php if (session("errors.no_rm")) : ?>
@@ -59,7 +59,7 @@
 					</div>
                     <div class="">
 						<label for="" class="block mb-2 text-sm font-semibold text-gray-900">NIK Pasien<span class="me-2 text-red-500">*</span></label>
-						<input type="text" placeholder="Masukkan NIK Pasien" min="0" maxlength="16" name="nik_pasien" value="<?= set_value("nik_pasien") ?>" id="nik_pasien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+						<input type="text" placeholder="Masukkan NIK Pasien" min="0" maxlength="16" name="nik_pasien" value="<?= set_value("nik_pasien",$data['nik_pasien']) ?>" id="nik_pasien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 						<div id="error_nik" class="text-red-500 mt-2 text-xs"></div>
 						<div class="text-red-500 text-xs italic font-semibold">
 							<?php if (session("errors.nik_pasien")) : ?>
@@ -71,7 +71,7 @@
 					</div>
                     <div class="col-span-2">
 						<label for="" class="block mb-2 text-sm font-semibold text-gray-900">Nama Pasien<span class="me-2 text-red-500">*</span></label>
-						<input type="text" placeholder="Masukkan Nama Pasien" name="nama_pasien" value="<?= set_value("nama_pasien") ?>" id="nama_pasien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+						<input type="text" placeholder="Masukkan Nama Pasien" name="nama_pasien" value="<?= set_value("nama_pasien",$data['nama_pasien']) ?>" id="nama_pasien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 						<div class="text-red-500 text-xs italic font-semibold">
 							<?php if (session("errors.nama_pasien")) : ?>
 								<div class="text-red-500 text-sm">
@@ -82,7 +82,7 @@
 					</div>
                     <div class="">
 						<label for="" class="block mb-2 text-sm font-semibold text-gray-900">Tempat Lahir<span class="me-2 text-red-500">*</span></label>
-						<input type="text" placeholder="Masukkan Tempat Lahir" name="tempat_lahir" value="<?= set_value("tempat_lahir") ?>" id="tempat_lahir" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+						<input type="text" placeholder="Masukkan Tempat Lahir" name="tempat_lahir" value="<?= set_value("tempat_lahir",$data['tempat_lahir']) ?>" id="tempat_lahir" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 						<div class="text-red-500 text-xs italic font-semibold">
 							<?php if (session("errors.tempat_lahir")) : ?>
 								<div class="text-red-500 text-sm">
@@ -93,7 +93,7 @@
 					</div>
                     <div class="">
 						<label for="" class="block mb-2 text-sm font-semibold text-gray-900">Tanggal Lahir<span class="me-2 text-red-500">*</span></label>
-						<input type="text" datepicker datepicker-format="mm-dd-yyyy" name="tanggal_lahir" id="tgl_lahir" placeholder="Masukkan Nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="<?= set_value("tanggal_lahir") ?>">
+						<input type="text" datepicker datepicker-format="mm-dd-yyyy" name="tanggal_lahir" value="<?= set_value("tanggal_lahir",date('m-d-Y',strtotime($data['tanggal_lahir']))) ?>" id="tgl_lahir" placeholder="Masukkan Nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 						<div class="text-red-500 text-xs italic font-semibold">
 							<?php if (session("errors.tanggal_lahir")) : ?>
 								<div class="text-red-500 text-sm">
@@ -106,8 +106,8 @@
 						<label for="" class="block mb-2 text-sm font-semibold text-gray-900">Jenis Kelamin<span class="me-2 text-red-500">*</span></label>
 						<select id="jenis_kelamin" name="jenis_kelamin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="0"> Pilih Jenis Kelamin</option>
-                                <option value="l" <?= set_value("jenis_kelamin") == 'L' ? "selected" : "" ?> > Laki-Laki</option>
-                                <option value="p" <?= set_value("jenis_kelamin") == 'P' ? "selected" : "" ?> > Perempuan</option>
+                                <option value="l" <?= set_value("jenis_kelamin",$data['jenis_kelamin']) == 'L' ? "selected" : "" ?> > Laki-Laki</option>
+                                <option value="p" <?= set_value("jenis_kelamin",$data['jenis_kelamin']) == 'P' ? "selected" : "" ?> > Perempuan</option>
                         </select>
                         <div class="text-red-500 text-xs italic font-semibold">
 							<?php if (session("errors.jenis_kelamin")) : ?>
@@ -119,7 +119,7 @@
 					</div>
                     <div class="">
 						<label for="" class="block mb-2 text-sm font-semibold text-gray-900">DPJP<span class="me-2 text-red-500">*</span></label>
-						<input type="text" placeholder="Masukkan DPJP" name="dpjp" id="dpjp" value="<?= set_value("dpjp") ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+						<input type="text" placeholder="Masukkan DPJP" name="dpjp" id="dpjp" value="<?= set_value("dpjp",$data['dpjp']) ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 						<div class="text-red-500 text-xs italic font-semibold">
 							<?php if (session("errors.dpjp")) : ?>
 								<div class="text-red-500 text-sm">
@@ -130,7 +130,7 @@
 					</div>
                     <div class="">
 						<label for="" class="block mb-2 text-sm font-semibold text-gray-900">Alamat<span class="me-2 text-red-500">*</span></label>
-                        <textarea id="alamat" rows="4" name="alamat" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Alamat..."><?= set_value("alamat") ?></textarea>
+                        <textarea id="alamat" rows="4" name="alamat" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Alamat..."><?= set_value("alamat",$data['alamat_lengkap']) ?></textarea>
 						<div class="text-red-500 text-xs italic font-semibold">
 							<?php if (session("errors.alamat")) : ?>
 								<div class="text-red-500 text-sm">
@@ -141,22 +141,11 @@
 					</div>
                     <div class="">
 						<label for="" class="block mb-2 text-sm font-semibold text-gray-900">Diagnosa<span class="me-2 text-red-500">*</span></label>
-                        <textarea id="diagnosa" rows="4" name="diagnosa" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan diagnosa..."><?= set_value("diagnosa") ?></textarea>
+                        <textarea id="diagnosa" rows="4" name="diagnosa" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan diagnosa..."><?= set_value("diagnosa",$data['diagnosa']) ?></textarea>
 						<div class="text-red-500 text-xs italic font-semibold">
 							<?php if (session("errors.diagnosa")) : ?>
 								<div class="text-red-500 text-sm">
 									<?= session("errors.diagnosa") ?>
-								</div>
-							<?php endif ?>
-						</div>
-					</div>
-                    <div class="col-span-2">
-						<label for="" class="block mb-2 text-sm font-semibold text-gray-900">Tanggal Terakhir Kunjungan<span class="me-2 text-red-500">*</span></label>
-						<input type="text" datepicker datepicker-format="mm-dd-yyyy" name="tanggal_kunjungan_terakhir" id="tanggal_kunjungan_terakhir" placeholder="Masukkan Tanggal Kunjungan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="<?= set_value("nama") ?>">
-						<div class="text-red-500 text-xs italic font-semibold">
-							<?php if (session("errors.tanggal_kunjungan_terakhir")) : ?>
-								<div class="text-red-500 text-sm">
-									<?= session("errors.tanggal_kunjungan_terakhir") ?>
 								</div>
 							<?php endif ?>
 						</div>

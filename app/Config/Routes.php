@@ -2,7 +2,9 @@
 
 use App\Controllers\Backoffice\DashboardController;
 use App\Controllers\Backoffice\ImportController;
+use App\Controllers\Backoffice\ListRetensiController;
 use App\Controllers\Backoffice\LogActivityController;
+use App\Controllers\Backoffice\PemusnahanController;
 use App\Controllers\Backoffice\PetugasController;
 use App\Controllers\Backoffice\RekamMedisController;
 use CodeIgniter\Router\RouteCollection;
@@ -28,8 +30,18 @@ $routes->group('dashboard',['filter' => 'login'], static function ($routes) {
     $routes->get('rekam-medis',[RekamMedisController::class,'index']);
     $routes->get('rekam-medis/create',[RekamMedisController::class,'create']);
     $routes->post('rekam-medis/store',[RekamMedisController::class,'store']);
+    $routes->get('rekam-medis/edit/(:any)',[RekamMedisController::class,'edit']);
+    $routes->post('rekam-medis/edit/update/(:any)',[RekamMedisController::class,'update']);
+    $routes->get('rekam-medis/show/(:any)',[RekamMedisController::class,'show']);
+    $routes->get('rekam-medis/delete/(:any)', [RekamMedisController::class,'destroy']);    
       // Rekam Medis - import
     $routes->get('rekam-medis/import',[ImportController::class,'index']);
+    $routes->post('rekam-medis/import/store',[ImportController::class,'store']);
+    // List Retensi 
+    $routes->get('list-retensi',[ListRetensiController::class,'index']);
+    $routes->post('list-retensi/update',[ListRetensiController::class,'update']);
+    // Pemusnahan 
+    $routes->get('pemusnahan',[PemusnahanController::class,'index']);
     // log activity 
     $routes->get('log-activity',[LogActivityController::class,'index']);
     $routes->get('log-activity/show/(:any)',[LogActivityController::class,'show']);

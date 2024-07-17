@@ -39,13 +39,46 @@
                         <th scope="col" class="px-4 py-3">NIK</th>
                         <th scope="col" class="px-4 py-3">Nama Lengkap</th>
                         <th scope="col" class="px-4 py-3">Alamat</th>
-                        <th scope="col" class="px-4 py-3">Status Retensi</th>
                         <th scope="col" class="px-4 py-3">Kunjungan Terakhir </th>
+                        <th scope="col" class="px-4 py-3">Status</th>
                         <th scope="col" class="px-4 py-3">
                             <span class="sr-only">Actions</span>
                         </th>
                     </tr>
                 </thead>
+                <tbody>
+                    <?php $no = 1;
+                        foreach ($data as $row) : ?>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-4 py-3"><?= $no++ ?></td>
+                                <td class="px-4 py-3"><?= $row['no_rm'] ?></td>
+                                <td class="px-4 py-3"><?= $row['nik_pasien'] ?></td>
+                                <td class="px-4 py-3"><?= $row['nama_pasien'] ?></td>
+                                <td class="px-4 py-3"><?= $row['alamat_lengkap'] ?></td>
+                                <td class="px-4 py-3"><?= $row['tanggal_kunjungan_terakhir'] ?></td>
+                                <td class="px-4 py-3">
+                                    <?php if ($row['status'] == 'inactive') : ?>
+                                        <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Inactive</span>
+                                    <?php else : ?>
+                                        <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Active</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td class="px-4 py-3 flex items-center justify-end">
+                                    <div class="inline-flex rounded-md shadow-sm">
+                                        <a href="<?= base_url('dashboard/rekam-medis/show/' . $row['id']) ?>" aria-current="page" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+                                            Show
+                                        </a>
+                                        <a href="<?= base_url('dashboard/rekam-medis/edit/' . $row['id']) ?>" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+                                            Edit
+                                        </a>
+                                        <a href="#" data-id="<?= $row['id'] ?>" onclick="deleteConfirm('rekam-medis/delete/<?= $row['id'] ?>')" data-modal-target="hapus default-modal" data-modal-toggle="default-modal"class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+                                            Hapus
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                    <?php endforeach; ?>
+                </tbody>
             </table>
         </div>
     </div>

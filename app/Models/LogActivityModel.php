@@ -54,6 +54,7 @@ class LogActivityModel extends Model
     public function getFindLog($id) {
         return  $this->select('log_activity.*,users.nama, users.username')
                 ->join('users','users.id = log_activity.user_id')
+                ->orderBy('log_activity.id', 'DESC')
                 ->where('user_id', $id)->findAll();
     }
 
