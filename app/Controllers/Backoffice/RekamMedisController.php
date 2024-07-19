@@ -34,7 +34,7 @@ class RekamMedisController extends BaseController
     public function store() {
         $validate = [
             'nik_pasien' => 'required|alpha_numeric_space|min_length[16]|max_length[16]|is_unique[rekam_medis.nik_pasien]',
-            'no_rm' => 'required|numeric|is_unique[rekam_medis.no_rm]',
+            'no_rm' => 'required|numeric|is_unique[rekam_medis.no_rm]|alpha_numeric_space|min_length[6]|max_length[6]',
             'nama_pasien' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
@@ -63,11 +63,22 @@ class RekamMedisController extends BaseController
 
             $tgl_lahir = date('Y-m-d', strtotime($tanggal_lahir));
 
-            // Count years
+            // Mendapatkan tanggal kunjungan terakhir dan tanggal saat ini
             $start_date = date_create(date('Y-m-d', strtotime($tanggal_kunjungan_terakhir)));
             $end_date = date_create(date('Y-m-d'));
+
+            // Menghitung selisih tahun antara tanggal kunjungan terakhir dan tanggal saat ini
             $interval = date_diff($start_date, $end_date);
             $status = $interval->y >= 5 ? 'inactive' : 'active';
+
+            // Menambahkan 5 tahun ke tanggal kunjungan terakhir
+            $start_date->modify('+5 years');
+            // Format tanggal dalam format 'Y-m-d'
+            $date_5_years_later  = $start_date->format('Y-m-d');
+
+            // Menambahkan 2 tahun lagi ke tanggal setelah penambahan 5 tahun
+            $start_date->modify('+2 years');
+            $date_7_years_later = $start_date->format('Y-m-d');
 
             $data = [
                 'no_rm' => $no_rm,
@@ -81,6 +92,8 @@ class RekamMedisController extends BaseController
                 'dpjp' => $dpjp,
                 'status' => $status,
                 'tanggal_kunjungan_terakhir' =>  date('Y-m-d H:i:s', strtotime($tanggal_kunjungan_terakhir)),
+                'tanggal_retensi' => $date_5_years_later,
+                'tanggal_pemusnahan' => $date_7_years_later,
                 'created_at' => date('Y-m-d H:i:s'),
             ];
 

@@ -69,7 +69,7 @@
                 </button>
                 <ul id="alih-media" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="#" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
+                        <a href="<?=base_url('dashboard/pelestarian')?>" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
                             <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/>
                             </svg>
@@ -80,7 +80,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
+                        <a href="<?=base_url('dashboard/pemusnahan')?>" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
                             <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/>
                             </svg>
@@ -106,7 +106,7 @@
                 </button>
                 <ul id="laporan" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="#" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
+                        <a href="<?=base_url('dashboard/laporan-retensi')?>" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
                             <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/>
                             </svg>

@@ -32,6 +32,15 @@ class ImportController extends BaseController
                 $interval = $start_date->diff($end_date);
                 $years_count = $interval->y;
                 $status = $years_count >= 5 ? 'inactive' : 'active';
+                // tanggal retensi 
+                // Add 5 years to the date
+                $start_date->modify('+5 years');
+                // Format the date in a specific format, e.g., 'Y-m-d'
+                $date_5_years_later  = $start_date->format('Y-m-d');
+                // 2  tahun berikutnya 
+                $start_date = $start_date->modify('+2 years');
+                $date_7_years_later = $start_date->format('Y-m-d');
+               
                 // tanggal lahir 
                 $tgl_lahir = date('Y-m-d', strtotime($row['Tanggal Lahir']));
                 if (!$existing) {
@@ -47,6 +56,8 @@ class ImportController extends BaseController
                         'dpjp' => $row['DPJP'],
                         'status' => $status,
                         'tanggal_kunjungan_terakhir' => date('Y-m-d H:i:s', strtotime($row['Tanggal Kunjungan Terakhir'])),
+                        'tanggal_retensi' => $date_5_years_later,
+                        'tanggal_pemusnahan' => $date_7_years_later,
                         'created_at' => date('Y-m-d H:i:s'),
                     ];
                     $save->save($data);

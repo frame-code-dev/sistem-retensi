@@ -23,6 +23,8 @@
                         <th scope="col" class="px-4 py-3">No. RM</th>
                         <th scope="col" class="px-4 py-3">Nama Lengkap</th>
                         <th scope="col" class="px-4 py-3">Kunjungan Terakhir </th>
+                        <th scope="col" class="px-4 py-3">Tanggal Retensi </th>
+                        <th scope="col" class="px-4 py-3">Tanggal Pemusnahan </th>
                         <th scope="col" class="px-4 py-3">Status</th>
                         <th scope="col" class="px-4 py-3">Keterangan</th>
                         <th scope="col" class="px-4 py-3">
@@ -38,6 +40,8 @@
                                 <td class="px-4 py-3"><?= $row['no_rm'] ?></td>
                                 <td class="px-4 py-3"><?= $row['nama_pasien'] ?></td>
                                 <td class="px-4 py-3"><?= $row['tanggal_kunjungan_terakhir'] ?></td>
+                                <td class="px-4 py-3"><?= $row['tanggal_retensi'] ?></td>
+                                <td class="px-4 py-3"><?= $row['tanggal_pemusnahan'] ?></td>
                                 <td class="px-4 py-3">
                                     <?php if ($row['status'] == 'inactive') : ?>
                                         <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Inactive</span>
@@ -46,24 +50,35 @@
                                     <?php endif; ?>
                                 </td>
                                 <td class="px-4 py-3">
-                                <?php if ($row['status'] == 'inactive') : ?>
-                                    <span class="text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Siap Dinilai Guna</span>
-                                <?php else : ?>
-                                    <span class="text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Disimpan</span>
-                                <?php endif; ?>
+                                    <?php
+                                        $end_date = date('Y-m-d',strtotime($row['tanggal_pemusnahan']));
+                                    ?>
+                                    <?php if ($row['status'] == 'inactive') : ?>
+                                        <?php if ($end_date <= date('Y-m-d')) : ?>
+                                            <span class="text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Siap Dinilai Guna</span>
+                                        <?php else : ?>
+                                            <span class="text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-900 dark:text-gray-300">Belum Siap Dinilai Guna</span>
+                                        <?php endif; ?>
+                                    <?php else : ?>
+                                        <span class="text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Disimpan</span>
+                                    <?php endif; ?>
                                 </td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <?php if ($row['status'] == 'inactive') : ?>
                                         <?php if ($row['deleted_at'] != null) : ?>
-                                            <span>Silahkan akses dari menu <a href="<?= base_url('backoffice/retensi') ?>" class="text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pemusnahan Data</a></span>
+                                                <span>Silahkan akses dari menu <span class="text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Alih Media</span></span>
                                         <?php else : ?>
-                                            <a href="#" data-modal-target="update-modal" data-modal-toggle="update-modal" data-user="<?= $row['id'] ?>"   class="update-modal text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                                                Pemusnahan
-                                                <svg class="w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                                                </svg>
+                                                <?php if ($end_date <= date('Y-m-d')) : ?>
+                                                    <a href="#" data-modal-target="update-modal" data-modal-toggle="update-modal" data-user="<?= $row['id'] ?>"   class="update-modal text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                                        Upload Berkas Nilai Guna
+                                                        <svg class="w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                                                        </svg>
 
-                                            </a>
+                                                    </a>
+                                                <?php else : ?>
+                                                    -
+                                                <?php endif; ?>
                                         <?php endif; ?>
                                     <?php else : ?>
                                         -

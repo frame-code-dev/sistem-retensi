@@ -67,6 +67,14 @@ class CreateRekamMedisTable extends Migration
                 'type' => 'DATE',
                 'null' => true,
             ],
+            'tanggal_retensi' => [
+                'type' => 'DATE',
+                'null' => true,
+            ],
+            'tanggal_pemusnahan' => [
+                'type' => 'DATE',
+                'null' => true,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,

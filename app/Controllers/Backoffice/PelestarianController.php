@@ -6,12 +6,11 @@ use App\Controllers\BaseController;
 use App\Models\DetailUploadBerkas;
 use App\Models\LogActivityModel;
 use App\Models\UploadBerkas;
-use CodeIgniter\HTTP\ResponseInterface;
 use ConvertApi\ConvertApi;
 use Jurosh\PDFMerge\PDFMerger;
 use setasign\Fpdi\Fpdi;
 
-class PemusnahanController extends BaseController
+class PelestarianController extends BaseController
 {
     protected $uploadBerkas;
     protected $detailUploadBerkas;
@@ -22,9 +21,9 @@ class PemusnahanController extends BaseController
     }
     public function index()
     {
-        $param['title'] = 'Data Retensi Pemusnahan';
+        $param['title'] = 'Data Retensi Pelestarian';
         $param['data'] = $this->uploadBerkas->getAllRekamMedisBerkas()->findAll();
-        return view('backoffice/pemusnahan/index',$param);
+        return view('backoffice/pelestarian/index',$param);
     }
 
     public function show($id) {
@@ -32,7 +31,7 @@ class PemusnahanController extends BaseController
         $param['data'] = $this->uploadBerkas->getFindRekamMedisBerkas($id);
         $param['detail_file'] = $this->detailUploadBerkas->getDetailUploadBerkas($id);
         $param['id_pdf'] = $id;
-        return view('backoffice/pemusnahan/show',$param);
+        return view('backoffice/pelestarian/show',$param);
         
     }
 
@@ -41,13 +40,13 @@ class PemusnahanController extends BaseController
         $param['data'] = $this->uploadBerkas->getFindRekamMedisBerkas($id);
         $param['detail_file'] = $this->detailUploadBerkas->getDetailUploadBerkas($id);
         $param['id_berkas'] = $id;
-        return view('backoffice/pemusnahan/edit',$param);
+        return view('backoffice/pelestarian/edit',$param);
     }
 
     public function upload($id) {
         $param['title'] = 'Upload Berkas Nilai Guna';
         $param['data'] = $this->uploadBerkas->getFindRekamMedisBerkas($id);
-        return view('backoffice/pemusnahan/upload',$param);
+        return view('backoffice/pelestarian/upload',$param);
         
     }
     public function uploadEditStore($id) {
@@ -57,7 +56,7 @@ class PemusnahanController extends BaseController
                 if ($value->isValid() && !$value->hasMoved()) {
                     $current_data = $this->detailUploadBerkas->findData($id, $key);
                     // Generate a unique name for each file
-                    $value->move(ROOTPATH . 'public/berkas/pemusnahan/'.$id, $value->getName());
+                    $value->move(ROOTPATH . 'public/berkas/pelestarian/'.$id, $value->getName());
                     $data = [
                         'id_upload_berkas' => $id,
                         'nama_formulir' => $key,
@@ -80,7 +79,7 @@ class PemusnahanController extends BaseController
             $log->insertLog($data);
             session()->setFlashdata("status_success", true);
             session()->setFlashdata('message', 'Data berkas berhasil diganti.');
-            return redirect()->to('dashboard/pemusnahan');
+            return redirect()->to('dashboard/pelestarian');
         } catch (\Throwable $th) {
 			session()->setFlashdata("status_error", true);
 			session()->setFlashdata('error', 'Data berkas gagal ditambahkan, <br>' . $th->getMessage());
@@ -98,7 +97,7 @@ class PemusnahanController extends BaseController
             foreach ($files as $key => $value) {
                 if ($value->isValid() && !$value->hasMoved()) {
                     // Generate a unique name for each file
-                    $value->move(ROOTPATH . 'public/berkas/pemusnahan/'.$id, $value->getName());
+                    $value->move(ROOTPATH . 'public/berkas/pelestarian/'.$id, $value->getName());
                     $data = [
                         'id_upload_berkas' => $id,
                         'nama_formulir' => $key,
@@ -117,8 +116,8 @@ class PemusnahanController extends BaseController
                 $this->detailUploadBerkas->insert($data);
             }
             $this->uploadBerkas->update($id,[
-                'keterangan' => 'PEMUSNAHAN',
-                'deleted_at' => date('Y-m-d H:i:s'),
+                'keterangan' => 'PELESTARIAN',
+                'updated_at' => date('Y-m-d H:i:s'),
             ]);
             $data = [
                 'user_id' => user()->id,
@@ -130,7 +129,7 @@ class PemusnahanController extends BaseController
             $log->insertLog($data);
             session()->setFlashdata("status_success", true);
             session()->setFlashdata('message', 'Data berkas berhasil ditambahkan.');
-            return redirect()->to('dashboard/pemusnahan');
+            return redirect()->to('dashboard/pelestarian');
         } catch (\Throwable $th) {
 			session()->setFlashdata("status_error", true);
 			session()->setFlashdata('error', 'Data berkas gagal ditambahkan, <br>' . $th->getMessage());
@@ -146,17 +145,18 @@ class PemusnahanController extends BaseController
     public function pdf($id_berkas) {
         $data = $this->uploadBerkas->getFindRekamMedisBerkas($id_berkas);
         $detail_files = $this->detailUploadBerkas->getDetailUploadBerkas($id_berkas);
-        $filesToMerge = [];
+        
+        $filesToMergePelestarian = [];
         foreach ($detail_files as $key => $value) {
             if ($value['nama_file'] != null) {
-                $filesToMerge[] = ROOTPATH.'/public/berkas/pemusnahan/'.$id_berkas.'/'.$value['nama_file'];
+                $filesToMergePelestarian[] = ROOTPATH.'/public/berkas/pelestarian/'.$id_berkas.'/'.$value['nama_file'];
             }
         }
 
         try {
             ConvertApi::setApiSecret('lnXTYdaNElBhxTrE');
             $result = ConvertApi::convert('merge', [
-                    'Files' => $filesToMerge,
+                    'Files' => $filesToMergePelestarian,
                 ], 'pdf'
             );
             // Direktori tujuan untuk menyimpan hasil

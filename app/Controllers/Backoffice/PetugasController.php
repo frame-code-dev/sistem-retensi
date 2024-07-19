@@ -215,4 +215,73 @@ class PetugasController extends BaseController
         session()->setFlashdata('message', 'Data status user berhasil diganti.');
         return redirect()->to('dashboard/petugas');
     }
+
+    public function updatePassword() {
+        $param['title'] = 'Update Password';
+        $param['data'] = $this->userModel->getFindUsers(user()->id);
+        return view('backoffice/petugas/update-password',$param);
+    }
+
+    public function updatePasswordStore() {
+        $id = user()->id;
+        $rules = [
+            'username' => 'required',
+            'nama' => 'required',
+            'email'    => 'required|valid_email',
+        ];
+     
+        if (! $this->validate($rules))
+        {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+        
+
+		try {
+            $param['data'] = $this->userModel->getFindUsers($id);
+            $nama = $this->request->getPost("nama");
+            $username = $this->request->getPost("username");
+            $email = $this->request->getPost("email");
+            $password = (string) $this->request->getPost('password');
+            if ($password != '' || $password != null) {
+                $data = [
+                    "nama" => $nama,
+                    "email" => $email,
+                    "username" => $username,
+                    "password" => $password,
+                    "active" => 1,
+                ];
+            }else{
+                $data = [
+                    "nama" => $nama,
+                    "email" => $email,
+                    "username" => $username,
+                    "active" => 1,
+                ];
+            }
+           
+            $this->userModel->updateUser($id,$data);
+            
+            $data = [
+                'user_id' => user()->id,
+                'action' => 'Mengganti data petugas',
+                'ip_address' => $this->request->getUserAgent(),
+                'created_at' => date("Y-m-d H:i:s"),
+            ];
+            $log = new LogActivityModel();
+            $log->insertLog($data);
+			session()->setFlashdata("status_success", true);
+			session()->setFlashdata('message', 'Data user berhasil diganti.');
+			return redirect()->to('/');
+		} catch (\Throwable $th) {
+            return $th;
+			session()->setFlashdata("status_error", true);
+			session()->setFlashdata('error', 'Data user gagal diganti, <br>' . $th->getMessage());
+			return redirect()->back();
+		} catch (\Exception $e) {
+            return $e;
+            session()->setFlashdata("status_error", true);
+			session()->setFlashdata('error', 'Data user gagal diganti, <br>' . $e->getMessage());
+			return redirect()->back();
+		}
+    }
 }

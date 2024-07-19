@@ -4,17 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class RekamMedisModel extends Model
+class DetailUploadBerkas extends Model
 {
-    protected $table            = 'rekam_medis';
+    protected $table            = 'detail_upload_berkas';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['no_rm','nama_pasien','tempat_lahir',
-    'tanggal_lahir','nik_pasien','jenis_kelamin','alamat_lengkap','diagnosa','dpjp',
-    'status','tanggal_kunjungan_terakhir','tanggal_retensi','tanggal_pemusnahan','created_at','updated_at','deleted_at'];
+    protected $allowedFields    = ['id_upload_berkas','nama_formulir','nama_file','created_at','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -46,9 +44,17 @@ class RekamMedisModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function getDetailUploadBerkas($id)  {
+        return $this->where('id_upload_berkas',$id)->findAll();
+        
+    }
 
-
-    public function getAllRekamMedis() {
-        return $this->findAll();
+    public function checkData($id, $status) {
+        return $this->where('id_upload_berkas', $id)->where('nama_formulir', $status)->countAllResults() > 0;
+        
+    }
+    public function findData($id, $status) {
+        return $this->where('id_upload_berkas', $id)->where('nama_formulir', $status)->first();
+        
     }
 }

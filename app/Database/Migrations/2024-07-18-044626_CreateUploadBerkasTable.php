@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateLogActivityTable extends Migration
+class CreateUploadBerkasTable extends Migration
 {
     public function up()
     {
@@ -14,19 +14,15 @@ class CreateLogActivityTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'user_id' => [
+            'id_rekam_medis' => [
                 'type'       => 'INT',
                 'constraint' => 11,
                 'null' => true,
             ],
-            'action' => [
-                'type' => 'TEXT',
+            'keterangan' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
                 'null' => true,
-            ],
-            'ip_address' => [
-                'type' => 'TEXT',
-                'null' => true,
-
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -36,15 +32,18 @@ class CreateLogActivityTable extends Migration
                 'type' => 'DATETIME',
                 'null' => true,
             ],
-        ]); 
+            'deleted_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+        ]);
+
         $this->forge->addKey('id', true);
-        $this->forge->createTable('log_activity');
+        $this->forge->createTable('upload_berkas');
     }
 
     public function down()
     {
-     
-        $this->forge->dropTable('log_activity');
+        $this->forge->dropTable('upload_berkas');
     }
-
 }
