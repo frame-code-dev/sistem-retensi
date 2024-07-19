@@ -1,8 +1,10 @@
 <?php
 
+use App\Controllers\Backoffice\BAPController;
 use App\Controllers\Backoffice\DashboardController;
 use App\Controllers\Backoffice\ImportController;
 use App\Controllers\Backoffice\LaporanPelestarianController;
+use App\Controllers\Backoffice\LaporanPemusnahanController;
 use App\Controllers\Backoffice\LaporanRetensiController;
 use App\Controllers\Backoffice\ListRetensiController;
 use App\Controllers\Backoffice\LogActivityController;
@@ -68,9 +70,13 @@ $routes->group('dashboard',['filter' => 'login'], static function ($routes) {
     $routes->get('laporan-retensi/pdf',[LaporanRetensiController::class,'pdf']);
     // laporan pelestarian 
     $routes->get('laporan-pelestarian',[LaporanPelestarianController::class,'index']);
-    // laporan pemusnahan
     $routes->get('laporan-pelestarian/pdf',[LaporanPelestarianController::class,'pdf']);
-    
+    // laporan pemusnahan
+    $routes->get('laporan-pemusnahan',[LaporanPemusnahanController::class,'index']);
+    $routes->get('laporan-pemusnahan/pdf',[LaporanPemusnahanController::class,'pdf']);
+    // Laporan BAP 
+    $routes->get('laporan-bap',[BAPController::class,'index']);
+    $routes->post('laporan-bap/store',[BAPController::class,'store']);
     // log activity 
     $routes->get('log-activity',[LogActivityController::class,'index']);
     $routes->get('log-activity/show/(:any)',[LogActivityController::class,'show']);

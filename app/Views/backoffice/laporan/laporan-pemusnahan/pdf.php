@@ -59,7 +59,7 @@
         <hr class="border border-gray-900 border-3">
         <div>
             <div class="flex justify-end mt-5">
-                <a href="<?=base_url('dashboard/laporan-pelestarian') ?>" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 no-print">Kembali</a> 
+                <a href="<?=base_url('dashboard/laporan-pemusnahan') ?>" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 no-print">Kembali</a> 
             </div>
             <div class="p-4 text-center">
                 <h1 class="font-bold text-lg"><?=$title?></h1>
@@ -72,20 +72,20 @@
                             <th scope="col" class="px-4 py-3 border">No. RM</th>
                             <th scope="col" class="px-4 py-3 border">NIK</th>
                             <th scope="col" class="px-4 py-3 border">Kunjungan Terakhir </th>
-                            <th scope="col" class="px-4 py-3 border">Tanggal Pelestarian</th>
+                            <th scope="col" class="px-4 py-3 border">Tanggal Pemusnahan</th>
                             <th scope="col" class="px-4 py-3 border">Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no = 1;
                             foreach ($data as $row) : ?>
-                                <?php if ($row['keterangan'] == 'PELESTARIAN' || $row['keterangan'] == null) : ?>
+                                <?php if ($row['keterangan'] == 'PEMUSNAHAN' || $row['keterangan'] == null) : ?>
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                         <td class="px-4 py-3 border"><?= $no++ ?></td>
                                         <td class="px-4 py-3 border"><?= $row['no_rm'] ?></td>
                                         <td class="px-4 py-3 border"><?= $row['diagnosa'] ?></td>
                                         <td class="px-4 py-3 border"><?= $row['tanggal_kunjungan_terakhir'] ?></td>
-                                        <td class="px-4 py-3 border"><?= $row['created_at'] ?></td>
+                                        <td class="px-4 py-3 border"><?= $row['deleted_at'] ?></td>
                                         <td class="px-4 py-3 border"><?= $row['keterangan'] ?></td>
                                     </tr>
                                 <?php endif; ?>

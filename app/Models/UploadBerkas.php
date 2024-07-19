@@ -45,7 +45,10 @@ class UploadBerkas extends Model
     protected $afterDelete    = [];
     
     public function getAllRekamMedisBerkas() {
-        return $this->select('upload_berkas.*, rekam_medis.id as id_rekam, rekam_medis.no_rm, rekam_medis.nama_pasien, rekam_medis.tanggal_kunjungan_terakhir')
+        return $this->select('upload_berkas.*, rekam_medis.id as id_rekam, rekam_medis.no_rm,rekam_medis.nik_pasien,
+                        rekam_medis.tanggal_pemusnahan,
+                        rekam_medis.alamat_lengkap,rekam_medis.status, rekam_medis.nama_pasien,
+                        rekam_medis.tanggal_retensi,rekam_medis.diagnosa, rekam_medis.tanggal_kunjungan_terakhir')
                       ->join('rekam_medis', 'rekam_medis.id = upload_berkas.id_rekam_medis');
         
         // if ($param == 'PELESTARIAN') {

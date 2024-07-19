@@ -19,7 +19,7 @@
                </div>
                <div class="mt-3">
                      <h2 class="text-theme-text text-3xl font-bold tracking-tighter">
-                        200
+                        <?=$count_belum_retensi?>
                      </h2>
                      <p class="text-gray-500 text-sm tracking-tighter">
                         RM Belum Diretensi
@@ -38,7 +38,7 @@
                </div>
                <div class="mt-3">
                      <h2 class="text-theme-text text-3xl font-bold tracking-tighter">
-                        200
+                        <?=$count_sudah_retensi?>
                      </h2>
                      <p class="text-gray-500 text-sm tracking-tighter">
                         RM sudah diretensi
@@ -57,7 +57,7 @@
                </div>
                <div class="mt-3">
                      <h2 class="text-theme-text text-3xl font-bold tracking-tighter">
-                        200
+                        <?=$count_siap_dimusnahkan?>
                      </h2>
                      <p class="text-gray-500 text-sm tracking-tighter">
                      RM sudah siap dimusnahkan
@@ -150,35 +150,41 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
+    var chartData = <?= json_encode($chartData); ?>;
+
+   var pelestarianDates = chartData.pelestarian.map(data => data.date);
+   var pelestarianCounts = chartData.pelestarian.map(data => data.count);
+   var pemusnahanDates = chartData.pemusnahan.map(data => data.date);
+   var pemusnahanCounts = chartData.pemusnahan.map(data => data.count);
    // pendaftaran
 	var pendaftaran = {
-          series: [{
-          name: 'Retensi Pelestarian',
-          data: [31, 40, 28, 51, 42, 109, 100]
+        series: [{
+            name: 'Retensi Pelestarian',
+            data: pelestarianCounts
         }, {
-          name: 'Retensi Pemusnahan',
-          data: [11, 32, 45, 32, 34, 52, 41]
+            name: 'Retensi Pemusnahan',
+            data: pemusnahanCounts
         }],
-          chart: {
-          height: 350,
-          type: 'area'
+        chart: {
+            height: 350,
+            type: 'area'
         },
         dataLabels: {
-          enabled: false
+            enabled: false
         },
         stroke: {
-          curve: 'smooth'
+            curve: 'smooth'
         },
         xaxis: {
-          type: 'datetime',
-          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+            type: 'datetime',
+            categories: pelestarianDates.length > pemusnahanDates.length ? pelestarianDates : pemusnahanDates
         },
         tooltip: {
-          x: {
-            format: 'dd/MM/yy HH:mm'
-          },
+            x: {
+                format: 'y-MMM-dd'
+            },
         },
-        };
+    };
 
 	var chart_pendaftaran = new ApexCharts(document.querySelector("#pendaftaran"), pendaftaran);
 	chart_pendaftaran.render();

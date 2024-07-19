@@ -14,7 +14,7 @@
            
         </div>
         <div class="card bg-white p-5 mt-4 border rounded-md w-full relative overflow-x-auto">
-            <form action="<?=base_url('dashboard/laporan-retensi')?>" method="GET" class="w-full mx-auto space-y-4" enctype="multipart/form-data">
+            <form action="<?=base_url('dashboard/laporan-pelestarian')?>" method="GET" class="w-full mx-auto space-y-4" enctype="multipart/form-data">
                 <div class="grid grid-cols-3 gap-4">
                     <div class="col-span-2">
                         <label class="block mb-2 text-sm font-semibold text-gray-900">Tanggal Laporan</label>
@@ -56,7 +56,7 @@
                         </div>
                         <div>
                             <?php if (!empty($_GET['nama']) && !empty($_GET['nip'])): ?>
-                                <a href="<?=base_url('dashboard/laporan-retensi/pdf/?start='.$_GET['start'].'&end='.$_GET['end'].'&nip='.$_GET['nip'].'&nama='.$_GET['nama'].'')?>" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                <a href="<?=base_url('dashboard/laporan-pelestarian/pdf/?start='.$_GET['start'].'&end='.$_GET['end'].'&nip='.$_GET['nip'].'&nama='.$_GET['nama'].'')?>" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                                     <svg class="w-3.5 h-3.5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z"/>
                                     </svg>
@@ -87,21 +87,23 @@
                 <tbody>
                     <?php $no = 1;
                         foreach ($data as $row) : ?>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <td class="px-4 py-3"><?= $no++ ?></td>
-                                <td class="px-4 py-3"><?= $row['no_rm'] ?></td>
-                                <td class="px-4 py-3"><?= $row['nik_pasien'] ?></td>
-                                <td class="px-4 py-3"><?= $row['nama_pasien'] ?></td>
-                                <td class="px-4 py-3"><?= $row['alamat_lengkap'] ?></td>
-                                <td class="px-4 py-3"><?= $row['tanggal_kunjungan_terakhir'] ?></td>
-                                <td class="px-4 py-3">
-                                    <?php if ($row['status'] == 'inactive') : ?>
-                                        <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Inactive</span>
-                                    <?php else : ?>
-                                        <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Active</span>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
+                            <?php if ($row['keterangan'] == 'PELESTARIAN' || $row['keterangan'] == null) : ?>
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td class="px-4 py-3"><?= $no++ ?></td>
+                                    <td class="px-4 py-3"><?= $row['no_rm'] ?></td>
+                                    <td class="px-4 py-3"><?= $row['nik_pasien'] ?></td>
+                                    <td class="px-4 py-3"><?= $row['nama_pasien'] ?></td>
+                                    <td class="px-4 py-3"><?= $row['alamat_lengkap'] ?></td>
+                                    <td class="px-4 py-3"><?= $row['tanggal_kunjungan_terakhir'] ?></td>
+                                    <td class="px-4 py-3">
+                                        <?php if ($row['status'] == 'inactive') : ?>
+                                            <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Inactive</span>
+                                        <?php else : ?>
+                                            <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Active</span>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>

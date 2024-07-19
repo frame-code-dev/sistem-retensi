@@ -6,21 +6,22 @@ use App\Controllers\BaseController;
 use App\Models\UploadBerkas;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class LaporanPelestarianController extends BaseController
+class LaporanPemusnahanController extends BaseController
 {
     protected $helpers = ['form','url'];
     protected $validation;
     protected $rekamModel;
     protected $uploadBerkas;
-
+    
     public function __construct(){
         $this->uploadBerkas = new UploadBerkas();
         $this->validation = \Config\Services::validation();
         $this->rekamModel = new \App\Models\RekamMedisModel();
     }
+    
     public function index()
     {
-        $param['title'] = 'LAPORAN PELESTARIAN';
+        $param['title'] = 'LAPORAN PEMUSNAHAN';
         $query = $this->uploadBerkas->getAllRekamMedisBerkas();
         if ($this->request->is('post')) {
             $start = $this->request->getVar('start');
@@ -29,7 +30,7 @@ class LaporanPelestarianController extends BaseController
                         ->where('rekam_medis.created_at <=', date('Y-m-d', strtotime($end)));
         }
         $param['data'] = $query->findAll();
-        return view('backoffice/laporan/laporan-pelestarian/index',$param);
+        return view('backoffice/laporan/laporan-pemusnahan/index',$param);
     }
 
     public function pdf() {
@@ -44,8 +45,8 @@ class LaporanPelestarianController extends BaseController
             $query->where('rekam_medis.created_at >=', date('Y-m-d', strtotime($start)))
                         ->where('rekam_medis.created_at <=', date('Y-m-d', strtotime($end)));
         }
-        $param['title'] = 'LAPORAN PELESTARIAN';
+        $param['title'] = 'LAPORAN PEMUSNAHAN';
         $param['data'] = $query->findAll();
-        return view('backoffice/laporan/laporan-pelestarian/pdf',$param);
+        return view('backoffice/laporan/laporan-pemusnahan/pdf',$param);
     }
 }

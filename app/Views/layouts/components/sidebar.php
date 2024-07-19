@@ -24,6 +24,7 @@
                     </svg>
                 </button>
                 <ul id="data-master" class="hidden py-2 space-y-2">
+                    <?php if (in_groups('administrator')) : ?>
                     <li>
                         <a href="<?=base_url('dashboard/petugas')?>" class="flex items-center w-full p-2 text-gray-500  transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
                             <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -34,6 +35,7 @@
                             </span>
                         </a>
                     </li>
+                    <?php endif; ?>
                     <li>
                         <a href="<?=base_url('dashboard/rekam-medis')?>" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
                             <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -93,51 +95,63 @@
                 </ul>
             </li>
             <hr>
-            <li>
-                <button type="button" class="flex items-center w-full p-3 text-base text-gray-900 transition duration-75 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700" aria-controls="laporan" data-collapse-toggle="laporan">
-                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-3 5h3m-6 0h.01M12 16h3m-6 0h.01M10 3v4h4V3h-4Z"/>
-                    </svg>
-
-                    <span class="flex-1 ms-3 text-gray-500 group-hover:text-white text-left rtl:text-right whitespace-nowrap">Laporan</span>
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                    </svg>
-                </button>
-                <ul id="laporan" class="hidden py-2 space-y-2">
+            <?php if (in_groups('administrator')) : ?>
                     <li>
-                        <a href="<?=base_url('dashboard/laporan-retensi')?>" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
-                            <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/>
+                        <button type="button" class="flex items-center w-full p-3 text-base text-gray-900 transition duration-75 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700" aria-controls="laporan" data-collapse-toggle="laporan">
+                            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-3 5h3m-6 0h.01M12 16h3m-6 0h.01M10 3v4h4V3h-4Z"/>
                             </svg>
-                            <span class="group-hover:text-white">
-                                Laporan Retensi
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
-                            <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/>
+        
+                            <span class="flex-1 ms-3 text-gray-500 group-hover:text-white text-left rtl:text-right whitespace-nowrap">Laporan</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                             </svg>
-                            <span class="group-hover:text-white">
-                                Laporan Pelestarian 
-                            </span>
-                        </a>
+                        </button>
+                        <ul id="laporan" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="<?=base_url('dashboard/laporan-retensi')?>" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
+                                    <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/>
+                                    </svg>
+                                    <span class="group-hover:text-white">
+                                        Laporan Retensi
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?=base_url('dashboard/laporan-pelestarian')?>" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
+                                    <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/>
+                                    </svg>
+                                    <span class="group-hover:text-white">
+                                        Laporan Pelestarian 
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?=base_url('dashboard/laporan-pemusnahan')?>" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
+                                    <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/>
+                                    </svg>
+                                    <span class="group-hover:text-white">
+                                        Laporan Pemusnahan 
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?=base_url('dashboard/laporan-bap')?>" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
+                                    <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/>
+                                    </svg>
+                                    <span class="group-hover:text-white">
+                                        Laporan BAP 
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="#" class="flex items-center w-full p-2 text-gray-500 transition duration-75 pl-11 group hover:bg-green-900 dark:text-white dark:hover:bg-gray-700">
-                            <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/>
-                            </svg>
-                            <span class="group-hover:text-white">
-                                Laporan Pemusnahan 
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <hr>
+                    <hr>
+            <?php endif; ?>
             <li>
                 <a href="<?=base_url('dashboard/log-activity')?>" class="flex items-center p-3 text-gray-900 dark:text-white hover:border-2 hover:bg-green-900 dark:hover:bg-gray-700 group">
                     <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
