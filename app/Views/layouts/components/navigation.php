@@ -32,7 +32,7 @@
               </div>
               <ul class="py-1" role="none">
                 <li>
-                  <a href="<?=base_url('dashboard/petugas/update-password')?>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Ganti Password</a>
+                  <a href="<?=base_url('dashboard/petugas/update-password')?>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
                 </li>
                 <li>
                   <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>

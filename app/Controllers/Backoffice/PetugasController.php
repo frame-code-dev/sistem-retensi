@@ -217,7 +217,7 @@ class PetugasController extends BaseController
     }
 
     public function updatePassword() {
-        $param['title'] = 'Update Password';
+        $param['title'] = 'Update Profile';
         $param['data'] = $this->userModel->getFindUsers(user()->id);
         return view('backoffice/petugas/update-password',$param);
     }

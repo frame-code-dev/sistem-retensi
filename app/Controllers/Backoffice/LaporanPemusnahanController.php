@@ -34,6 +34,9 @@ class LaporanPemusnahanController extends BaseController
     }
 
     public function pdf() {
+        // Load the language file
+        $locale = \Config\Services::language();
+        $locale->setLocale('id');
         $start = $this->request->getVar('start');
         $end = $this->request->getVar('end');
         $param['nama'] = $this->request->getVar('nama');

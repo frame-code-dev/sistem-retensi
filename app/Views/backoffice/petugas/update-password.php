@@ -5,7 +5,7 @@
         <div class="head lg:flex grid grid-cols-1 justify-between w-full">
             <div class="heading flex-auto">
                 <p class="text-blue-950 font-sm text-xs">
-                    Master Data
+                    Profile
                 </p>
                 <h2 class="font-bold tracking-tighter text-2xl text-theme-text">
                     <?=esc($title)?>
