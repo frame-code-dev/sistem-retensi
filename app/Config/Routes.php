@@ -2,6 +2,7 @@
 
 use App\Controllers\Backoffice\DashboardController;
 use App\Controllers\Backoffice\ImportController;
+use App\Controllers\Backoffice\LaporanPelestarianController;
 use App\Controllers\Backoffice\LaporanRetensiController;
 use App\Controllers\Backoffice\ListRetensiController;
 use App\Controllers\Backoffice\LogActivityController;
@@ -62,8 +63,13 @@ $routes->group('dashboard',['filter' => 'login'], static function ($routes) {
     $routes->get('pelestarian/show/(:any)',[PelestarianController::class,'show']);
     $routes->get('pelestarian/pdf/(:any)',[PelestarianController::class,'pdf']);
     // laporan 
+    // laporan retensi 
     $routes->get('laporan-retensi',[LaporanRetensiController::class,'index']);
     $routes->get('laporan-retensi/pdf',[LaporanRetensiController::class,'pdf']);
+    // laporan pelestarian 
+    $routes->get('laporan-pelestarian',[LaporanPelestarianController::class,'index']);
+    // laporan pemusnahan
+    $routes->get('laporan-pelestarian/pdf',[LaporanPelestarianController::class,'pdf']);
     
     // log activity 
     $routes->get('log-activity',[LogActivityController::class,'index']);

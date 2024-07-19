@@ -5,7 +5,7 @@ namespace App\Controllers\Backoffice;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class LaporanRetensiController extends BaseController
+class LaporanPelestarianController extends BaseController
 {
     protected $helpers = ['form','url'];
     protected $validation;
@@ -17,7 +17,7 @@ class LaporanRetensiController extends BaseController
     }
     public function index()
     {
-        $param['title'] = 'Laporan Retensi Rekam Medis';
+        $param['title'] = 'LAPORAN PELESTARIAN';
         $query = $this->rekamModel->where('status','active');
         if ($this->request->is('post')) {
             $start = $this->request->getVar('start');
@@ -26,7 +26,7 @@ class LaporanRetensiController extends BaseController
                         ->where('created_at <=', date('Y-m-d', strtotime($end)));
         }
         $param['data'] = $query->findAll();
-        return view('backoffice/laporan/laporan-retensi/index',$param);
+        return view('backoffice/laporan/laporan-pelestarian/index',$param);
     }
 
     public function pdf() {
@@ -41,8 +41,8 @@ class LaporanRetensiController extends BaseController
             $query->where('created_at >=', date('Y-m-d', strtotime($start)))
                         ->where('created_at <=', date('Y-m-d', strtotime($end)));
         }
-        $param['title'] = 'LAPORAN RETENSI REKAM MEDIS';
+        $param['title'] = 'LAPORAN PELESTARIAN';
         $param['data'] = $query->findAll();
-        return view('backoffice/laporan/laporan-retensi/pdf',$param);
+        return view('backoffice/laporan/laporan-pelestarian/pdf',$param);
     }
 }
