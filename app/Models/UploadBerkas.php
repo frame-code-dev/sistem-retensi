@@ -49,7 +49,8 @@ class UploadBerkas extends Model
                         rekam_medis.tanggal_pemusnahan,
                         rekam_medis.alamat_lengkap,rekam_medis.status, rekam_medis.nama_pasien,
                         rekam_medis.tanggal_retensi,rekam_medis.diagnosa, rekam_medis.tanggal_kunjungan_terakhir')
-                      ->join('rekam_medis', 'rekam_medis.id = upload_berkas.id_rekam_medis');
+                        ->groupBy('upload_berkas.id_rekam_medis')
+                        ->join('rekam_medis', 'rekam_medis.id = upload_berkas.id_rekam_medis');
         
         // if ($param == 'PELESTARIAN') {
         //     $query->where('upload_berkas.updated_at IS NOT NULL');
