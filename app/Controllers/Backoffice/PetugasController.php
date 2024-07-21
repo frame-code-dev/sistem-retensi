@@ -126,13 +126,22 @@ class PetugasController extends BaseController
             $role = $this->request->getPost("role");
             $password = (string) $this->request->getPost('password');
             if ($password != '' || $password != null) {
-                $data = [
-                    "nama" => $nama,
-                    "email" => $email,
-                    "username" => $username,
-                    "password" => $password,
-                    "active" => 1,
-                ];
+                $users = model(UserModel::class);
+                $user = $users->where('id', $id)
+                        ->first();
+                $user->password         = $this->request->getPost('password');
+                $user->reset_hash       = null;
+                $user->reset_at         = date('Y-m-d H:i:s');
+                $user->reset_expires    = null;
+                $user->force_pass_reset = false;
+                $users->save($user);
+                // $data = [
+                //     "nama" => $nama,
+                //     "email" => $email,
+                //     "username" => $username,
+                //     "password" => password_hash($password, PASSWORD_BCRYPT),
+                //     "active" => 1,
+                // ];
             }else{
                 $data = [
                     "nama" => $nama,
@@ -140,9 +149,9 @@ class PetugasController extends BaseController
                     "username" => $username,
                     "active" => 1,
                 ];
+                $this->userModel->updateUser($id,$data);
             }
            
-            $this->userModel->updateUser($id,$data);
             $userId = $id;
             if ($role != $param['data']->role) {
                 if ($role == 'administrator') {
@@ -231,14 +240,15 @@ class PetugasController extends BaseController
             $email = $this->request->getPost("email");
             $password = (string) $this->request->getPost('password');
             if ($password != '' || $password != null) {
-                $data = [
-                    "nama" => $nama,
-                    "email" => $email,
-                    "username" => $username,
-                    "password_hash" => $password,
-                    "active" => 1,
-                ];
-                $this->userModel->updateUser($id,$data);
+                $users = model(UserModel::class);
+                $user = $users->where('id', $id)
+                        ->first();
+                $user->password         = $this->request->getPost('password');
+                $user->reset_hash       = null;
+                $user->reset_at         = date('Y-m-d H:i:s');
+                $user->reset_expires    = null;
+                $user->force_pass_reset = false;
+                $users->save($user);
             }else{
                 $data = [
                     "nama" => $nama,
@@ -246,7 +256,7 @@ class PetugasController extends BaseController
                     "username" => $username,
                     "active" => 1,
                 ];
-                $this->userModel->updateUser($id,$data);
+                $this->userModel->update($id,$data);
             }
             $data = [
                 'user_id' => user()->id,
