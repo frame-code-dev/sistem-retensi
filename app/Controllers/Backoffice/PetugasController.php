@@ -224,18 +224,6 @@ class PetugasController extends BaseController
 
     public function updatePasswordStore() {
         $id = user()->id;
-        $rules = [
-            'username' => 'required',
-            'nama' => 'required',
-            'email'    => 'required|valid_email',
-        ];
-     
-        if (! $this->validate($rules))
-        {
-            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-        }
-        
-
 		try {
             $param['data'] = $this->userModel->getFindUsers($id);
             $nama = $this->request->getPost("nama");
@@ -247,9 +235,10 @@ class PetugasController extends BaseController
                     "nama" => $nama,
                     "email" => $email,
                     "username" => $username,
-                    "password" => $password,
+                    "password_hash" => $password,
                     "active" => 1,
                 ];
+                $this->userModel->updateUser($id,$data);
             }else{
                 $data = [
                     "nama" => $nama,
@@ -257,10 +246,8 @@ class PetugasController extends BaseController
                     "username" => $username,
                     "active" => 1,
                 ];
+                $this->userModel->updateUser($id,$data);
             }
-           
-            $this->userModel->updateUser($id,$data);
-            
             $data = [
                 'user_id' => user()->id,
                 'action' => 'Mengganti data petugas',
@@ -273,12 +260,12 @@ class PetugasController extends BaseController
 			session()->setFlashdata('message', 'Data user berhasil diganti.');
 			return redirect()->to('/');
 		} catch (\Throwable $th) {
-            return $th;
+            dd($th);
 			session()->setFlashdata("status_error", true);
 			session()->setFlashdata('error', 'Data user gagal diganti, <br>' . $th->getMessage());
 			return redirect()->back();
 		} catch (\Exception $e) {
-            return $e;
+            dd($e);
             session()->setFlashdata("status_error", true);
 			session()->setFlashdata('error', 'Data user gagal diganti, <br>' . $e->getMessage());
 			return redirect()->back();
