@@ -24,7 +24,6 @@
                         <th scope="col" class="px-4 py-3">Nama Lengkap</th>
                         <th scope="col" class="px-4 py-3">Kunjungan Terakhir </th>
                         <th scope="col" class="px-4 py-3">Tanggal Retensi </th>
-                        <th scope="col" class="px-4 py-3">Tanggal Pemusnahan </th>
                         <th scope="col" class="px-4 py-3">Status</th>
                         <th scope="col" class="px-4 py-3">Keterangan</th>
                         <th scope="col" class="px-4 py-3">
@@ -41,7 +40,6 @@
                                 <td class="px-4 py-3"><?= $row['nama_pasien'] ?></td>
                                 <td class="px-4 py-3"><?= $row['tanggal_kunjungan_terakhir'] ?></td>
                                 <td class="px-4 py-3"><?= $row['tanggal_retensi'] ?></td>
-                                <td class="px-4 py-3"><?= $row['tanggal_pemusnahan'] ?></td>
                                 <td class="px-4 py-3">
                                     <?php if ($row['status'] == 'inactive') : ?>
                                         <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Inactive</span>

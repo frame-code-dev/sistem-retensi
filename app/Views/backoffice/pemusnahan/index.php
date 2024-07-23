@@ -24,6 +24,7 @@
                         <th scope="col" class="px-4 py-3">Nama Lengkap</th>
                         <th scope="col" class="px-4 py-3">Kunjungan Terakhir </th>
                         <th scope="col" class="px-4 py-3">Keterangan</th>
+                        <th scope="col" class="px-4 py-3">Status Upload</th>
                         <th scope="col" class="px-4 py-3">
                             <span class="sr-only">Actions</span>
                         </th>
@@ -39,14 +40,21 @@
                                     <td class="px-4 py-3"><?= $row['nama_pasien'] ?></td>
                                     <td class="px-4 py-3"><?= $row['tanggal_kunjungan_terakhir'] ?></td>
                                     <td class="px-4 py-3"><?= $row['keterangan'] ?></td>
+                                    <td class="px-4 py-3"><span class="bg-<?=$row['status_upload'] == 'lengkap' ? 'green' : 'red'?> -100 text-<?=$row['status_upload'] == 'lengkap' ? 'green' : 'red'?>-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-<?=$row['status_upload'] == 'lengkap' ? 'green' : 'red'?>-900 dark:text-<?=$row['status_upload'] == 'lengkap' ? 'green' : 'red'?>-300"><?= $row['status_upload'] ?></span></td>
                                     <td class="px-4 py-3 flex items-center justify-end">
                                         <div class="inline-flex rounded-md shadow-sm">
                                             <a href="<?= base_url('dashboard/pemusnahan/show/' . $row['id']) ?>" aria-current="page" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
                                                 Preview Berkas
                                             </a>
-                                            <a href="<?= base_url('dashboard/pemusnahan/upload/' . $row['id']) ?>" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
-                                                Upload Berkas
-                                            </a>
+                                            <?php
+                                                $checkData = new \App\Models\DetailUploadBerkas;
+                                                $result = $checkData->findFirst($row['id']);
+                                            ?>
+                                            <?php if ($result) : ?>
+                                                <a href="<?= base_url('dashboard/pemusnahan/upload/' . $row['id']) ?>" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+                                                    Upload Berkas
+                                                </a>
+                                            <?php endif; ?>
                                             <a href="<?= base_url('dashboard/pemusnahan/edit/' . $row['id']) ?>" class="px-4 py-2 text-sm font-medium text-red-500 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
                                                 Edit Berkas
                                             </a>

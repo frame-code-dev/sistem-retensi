@@ -67,6 +67,13 @@ class PemusnahanController extends BaseController
                     $this->detailUploadBerkas->update($current_data['id'],$data);
                 }
             }
+            $result_detail = $this->detailUploadBerkas->checkDataNull(1);
+            if ($result_detail == 0) {
+                $this->uploadBerkas->update($id,[
+                    'status_upload' => 'lengkap',
+                    'deleted_at' => date('Y-m-d H:i:s'),
+                ]);
+            }
             $this->uploadBerkas->update($id,[
                 'deleted_at' => date('Y-m-d H:i:s'),
             ]);
@@ -115,6 +122,18 @@ class PemusnahanController extends BaseController
                 }
     
                 $this->detailUploadBerkas->insert($data);
+            }
+            $result_detail = $this->detailUploadBerkas->checkDataNull($id);
+            if ($result_detail == 0) {
+                $this->uploadBerkas->update($id,[
+                    'status_upload' => 'lengkap',
+                    'deleted_at' => date('Y-m-d H:i:s'),
+                ]);
+            }else{
+                $this->uploadBerkas->update($id,[
+                    'status_upload' => 'belum-lengkap',
+                    'deleted_at' => date('Y-m-d H:i:s'),
+                ]);
             }
             $this->uploadBerkas->update($id,[
                 'keterangan' => 'PEMUSNAHAN',

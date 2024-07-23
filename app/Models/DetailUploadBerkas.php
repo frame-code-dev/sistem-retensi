@@ -55,6 +55,13 @@ class DetailUploadBerkas extends Model
     }
     public function findData($id, $status) {
         return $this->where('id_upload_berkas', $id)->where('nama_formulir', $status)->first();
-        
+    }
+
+    public function checkDataNull($id) {
+        return $this->where('id_upload_berkas', $id)->where('nama_file is null')->countAllResults();
+    }
+
+    public function findFirst($id) {
+        return $this->where('id_upload_berkas', $id)->countAllResults() == 0 ?? false;
     }
 }

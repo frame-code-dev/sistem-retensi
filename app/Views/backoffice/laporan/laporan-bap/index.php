@@ -18,25 +18,32 @@
         <form action="<?=base_url('dashboard/laporan-bap/store')?>" method="POST">
             <div class="grid grid-cols-3 gap-4">
                     <div class="col-span-3">
-                        <label class="block mb-2 text-sm font-semibold text-gray-900">Tanggal Laporan</label>
-                        <div date-rangepicker class="flex items-center w-full">
-                            <div class="relative w-full">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                    </svg>
+                        <div class="border border-gray-200 bg-gray-200 rounded-lg p-4 space-y-4">
+                            <label class="block mb-2 text-sm font-semibold text-gray-900">Tanggal Laporan</label>
+                            <div date-rangepicker class="flex items-center w-full">
+                                <div class="relative w-full">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                        </svg>
+                                    </div>
+                                    <input name="start" value="<?=set_value('start')?>" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start">
                                 </div>
-                                <input name="start" value="<?=set_value('start')?>" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start">
-                            </div>
-                            <span class="mx-4 text-gray-500">to</span>
-                            <div class="relative w-full">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                    </svg>
+                                <span class="mx-4 text-gray-500">to</span>
+                                <div class="relative w-full">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                        </svg>
+                                    </div>
+                                    <input name="end" value="<?=set_value('end')?>" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end">
                                 </div>
-                                <input name="end" value="<?=set_value('end')?>" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end">
                             </div>
+                            <label class="block mb-2 text-sm font-semibold text-gray-900">Jenis Cetak BA</label>
+                            <select id="jenis_cetak" name="jenis_cetak" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="bap-kerja-sama" <?= set_value("jenis_cetak") == 'bap-kerja-sama' ? "selected" : "" ?> > BAP Kerja Sama</option>
+                                    <option value="bap-tanpa-kerja-sama" <?= set_value("jenis_cetak") == 'bap-tanpa-kerja-sama' ? "selected" : "" ?> > BAP Tanpa Kerja Sama</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-span-3">
@@ -51,8 +58,9 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-span-3">
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-2 gap-4" id="bap_kerja_sama">
                             <div class="card bg-white p-5 mt-4 border rounded-md w-full relative overflow-x-auto">
                                 <h4 class="font-bold">PIHAK KESATU</h4>
                                 <hr>
@@ -95,6 +103,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="grid grid-cols-2 gap-4 hidden" id="bap_tanpa_kerja_sama">
+                                <div>
+                                    <label for="" class="block mb-2 text-sm font-semibold text-gray-900">Sekretaris<span class="me-2 text-red-500">*</span></label>
+                                    <input type="text" placeholder="Masukkan Nama Lengkap" name="sekretaris" value="<?= set_value("sekretaris") ?>" id="sekretaris" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <input type="text" placeholder="Masukkan NIP" name="nip_sekretaris" value="<?= set_value("nip_sekretaris") ?>" id="sekretaris" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                </div>
+                                <div>
+                                    <label for="" class="block mb-2 text-sm font-semibold text-gray-900">Ketua<span class="me-2 text-red-500">*</span></label>
+                                    <input type="text" placeholder="Masukkan Nama Lengkap" name="ketua" value="<?= set_value("ketua") ?>" id="ketua" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <input type="text" placeholder="Masukkan NIP" name="nip_ketua" value="<?= set_value("nip_ketua") ?>" id="sekretaris" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                
+                                </div>
+                                <div>
+                                    <label for="" class="block mb-2 text-sm font-semibold text-gray-900">Mengetahui<span class="me-2 text-red-500">*</span></label>
+                                    <input type="text" placeholder="Masukkan Nama Lengkap" name="mengetahui" value="<?= set_value("mengetahui") ?>" id="mengetahui" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <input type="text" placeholder="Masukkan NIP" name="nip_mengetahui" value="<?= set_value("nip_mengetahui") ?>" id="sekretaris" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                </div>
+                        </div>
+
                     </div>
                     <div class="col-span-3">
                         <div class="grid grid-cols-1 gap-4">
@@ -173,6 +200,17 @@
 <?=$this->endSection()?>
 <?=$this->section('js')?>
 <script>
+        $('#jenis_cetak').on('change', function() {
+            let value = $(this).val();
+            console.log(value);
+            if (value == 'bap-tanpa-kerja-sama') {
+                $('#bap_tanpa_kerja_sama').removeClass('hidden');
+                $('#bap_kerja_sama').addClass('hidden');
+            }else{
+                $('#bap_tanpa_kerja_sama').addClass('hidden');
+                $('#bap_kerja_sama').removeClass('hidden');
+            }
+        })
         $('#addBtn').click(function() {
             var formRow = `
                 <div class="row form-row my-3 grid grid-cols-2 content-center gap-3">

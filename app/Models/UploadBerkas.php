@@ -12,7 +12,7 @@ class UploadBerkas extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_rekam_medis', 'keterangan','created_at','updated_at','deleted_at'];
+    protected $allowedFields    = ['id_rekam_medis','status_upload', 'keterangan','created_at','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -51,16 +51,14 @@ class UploadBerkas extends Model
                         rekam_medis.tanggal_retensi,rekam_medis.diagnosa, rekam_medis.tanggal_kunjungan_terakhir')
                         ->groupBy('upload_berkas.id_rekam_medis')
                         ->join('rekam_medis', 'rekam_medis.id = upload_berkas.id_rekam_medis');
-        
-        // if ($param == 'PELESTARIAN') {
-        //     $query->where('upload_berkas.updated_at IS NOT NULL');
-        // } else if ($param == 'PEMUSNAHAN') {
-        //     $query->where('upload_berkas.deleted_at IS NOT NULL');
-        // }else{
-        //     $query->where('upload_berkas.keterangan IS NOT NULL');
-        // }
-        
-        // return $query->findAll();
+    }
+    public function getAllRekamMedisBerkasWithDetail() {
+        return $this->select('upload_berkas.*, rekam_medis.id as id_rekam, rekam_medis.no_rm,rekam_medis.nik_pasien,
+                        rekam_medis.tanggal_pemusnahan,
+                        rekam_medis.alamat_lengkap,rekam_medis.status, rekam_medis.nama_pasien,
+                        rekam_medis.tanggal_retensi,rekam_medis.diagnosa, rekam_medis.tanggal_kunjungan_terakhir')
+                        ->groupBy('upload_berkas.id_rekam_medis')
+                        ->join('rekam_medis', 'rekam_medis.id = upload_berkas.id_rekam_medis');
     }
 
     public function getFindRekamMedisBerkas($id) {

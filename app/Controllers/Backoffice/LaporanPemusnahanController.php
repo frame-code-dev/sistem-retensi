@@ -29,7 +29,7 @@ class LaporanPemusnahanController extends BaseController
             $query->where('rekam_medis.created_at >=', date('Y-m-d', strtotime($start)))
                         ->where('rekam_medis.created_at <=', date('Y-m-d', strtotime($end)));
         }
-        $param['data'] = $query->findAll();
+        $param['data'] = $query->where('status_upload','lengkap')->findAll();
         return view('backoffice/laporan/laporan-pemusnahan/index',$param);
     }
 
@@ -49,7 +49,7 @@ class LaporanPemusnahanController extends BaseController
                         ->where('rekam_medis.created_at <=', date('Y-m-d', strtotime($end)));
         }
         $param['title'] = 'LAPORAN PEMUSNAHAN';
-        $param['data'] = $query->findAll();
+        $param['data'] = $query->where('status_upload','lengkap')->findAll();
         return view('backoffice/laporan/laporan-pemusnahan/pdf',$param);
     }
 }

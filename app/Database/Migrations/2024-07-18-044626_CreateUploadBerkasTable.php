@@ -19,6 +19,12 @@ class CreateUploadBerkasTable extends Migration
                 'constraint' => 11,
                 'null' => true,
             ],
+            'status_upload' => [
+                'type'       => 'ENUM',
+                'constraint' => ['lengkap', 'belum-lengkap'],
+                'default'    => null,
+                'null' => true,
+            ],
             'keterangan' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
