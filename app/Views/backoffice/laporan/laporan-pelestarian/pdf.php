@@ -93,7 +93,25 @@
                                         <td class="px-4 py-3 border">
                                          <?php foreach ($result as $key => $value) { 
                                             if ($value['nama_file'] != null) {
-                                                echo ''.$value['nama_formulir'].',';
+                                                $keterangan = '';
+                                                if ($value['nama_formulir'] == 'ringkasan_masuk_dan_keluar_value') {
+                                                    $keterangan = 'Ringkasan masuk dan keluar';
+                                                } else if($value['nama_formulir'] == 'resume_medis_value'){
+                                                    $keterangan = 'Resume medis';
+                                                } else if($value['nama_formulir'] == 'lembar_operasi_value'){
+                                                    $keterangan = 'Lembar operasi (termasuk laporan persalinan)';
+                                                } else if($value['nama_formulir'] == 'identifikasi_bayi_lahir_value'){
+                                                    $keterangan = 'Identifikasi bayi lahir';
+                                                } else if($value['nama_formulir'] == 'lembar_persetujuan_value'){
+                                                    $keterangan = 'Lembar persetujuan tindakan medis (informed consent)';
+                                                } else if($value['nama_formulir'] == 'lembar_kematian_value'){
+                                                    $keterangan = 'Lembar kematian';
+                                                } else if($value['nama_formulir'] == 'dokumen_rekam_medis_sesuai_value'){
+                                                    $keterangan = 'Dokumen Rekam Medis, sesuai dengan kepentingan pelayanan';
+
+                                                }
+                                                
+                                                echo ''.$keterangan.',';
                                             }
                                         }?>
                                         </td>
