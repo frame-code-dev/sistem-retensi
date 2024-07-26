@@ -86,7 +86,17 @@
                                         <td class="px-4 py-3 border"><?= $row['diagnosa'] ?></td>
                                         <td class="px-4 py-3 border"><?= $row['tanggal_kunjungan_terakhir'] ?></td>
                                         <td class="px-4 py-3 border"><?= $row['created_at'] ?></td>
-                                        <td class="px-4 py-3 border"><?= $row['keterangan'] ?></td>
+                                        <?php 
+                                            $detail = new \App\Models\DetailUploadBerkas;
+                                            $result = $detail->getDetailUploadBerkas($row['id']);
+                                        ?>
+                                        <td class="px-4 py-3 border">
+                                         <?php foreach ($result as $key => $value) { 
+                                            if ($value['nama_file'] != null) {
+                                                echo ''.$value['nama_formulir'].',';
+                                            }
+                                        }?>
+                                        </td>
                                     </tr>
                                 <?php endif; ?>
                         <?php endforeach; ?>
@@ -106,9 +116,9 @@
         </div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+</body>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script> -->
     <script>
         print();
     </script>
-</body>
 </html>
